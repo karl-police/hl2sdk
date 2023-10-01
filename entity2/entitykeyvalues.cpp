@@ -491,4 +491,23 @@ void CEntityKeyValues::AddConnectionDesc(
     }
 }
 
-// more
+void CEntityKeyValues::CopyFrom(const CEntityKeyValues* pOther, bool bDeleteCurrent) {
+    // MISSING_HELP
+}
+
+void CEntityKeyValues::SetValue<Vector2D>(EntityKeyId_t key, const Vector2D* const value) {
+    // MISSING_HELP
+}
+void CEntityKeyValues::SetValue<Vector4D>(EntityKeyId_t key, const Vector4D* const value) {
+    // MISSING_HELP
+}
+void CEntityKeyValues::SetValue<Color>(EntityKeyId_t key, const Color* const value) {
+    // MISSING_HELP
+}
+void CEntityKeyValues::SetValue<Quaternion>(EntityKeyId_t key, const Quaternion* const value) {
+    // MISSING_HELP
+}
+
+int64 CEntityKeyValues::AddKeyValue<char[260]>(EntityKeyId_t key, const char* value[260], const char* pAttributeName) {
+    // MISSING_HELP
+}
