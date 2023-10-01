@@ -73,4 +73,18 @@ public:
 	CEntityIdentity* m_pNextByClass; // 0x70	
 };
 
+
+
+struct CEntityIdentity::EntityNameTable_t {
+	INetworkStringTable* m_pTable;
+	bool m_bServer;
+};
+
+struct CEntityIdentity::NetworkVar_m_nameStringableIndex {
+	int8 gap0[1];
+};
+
+typedef CEntityIdentity::ThisClass CEntityIdentity;
+
+
 #endif // ENTITYIDENTITY_H
