@@ -9,9 +9,9 @@ void CEntityKeyValues::ReleaseAllComplexKeys()
         {
             i = i->m_pNext;            
             if (!i)
-                m_pComplexKeys = nullptr;        
+                m_pComplexKeys = nullptr; // 0LL      
             
-            pKey = i->m_pKey;
+            pKey = i->m_pKey; // (*m_pKey->_vptr_IEntityKeyComplex)(m_pKey)
         }
         
         pKey->vptr();
