@@ -22,6 +22,11 @@ struct CEntityKeyValues::EntityComplexKeyListElem_t {
     CEntityKeyValues::EntityComplexKeyListElem_t* m_pNext;
 }
 
+struct CEntityKeyValues::KeyValueInfo_t {
+    CEntityVariant m_value;
+    const char* m_pAttributeName;
+};
+
 
 
 // Functions
