@@ -19,10 +19,18 @@ void CEntityKeyValues::ReleaseAllComplexKeys()
 }
 
 
+
 void CEntityKeyValues::RemoveAllKeys() {
     CUtlLeanVectorFixedGrowableBase<unsigned int, 9u, short int>::IndexType_t m_nAllocated;
+    CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::IndexType_t v2;
     CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::ElemType_t* m_pElements;
+    CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::IndexType_t v4;
+    CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::ElemType_t* v5;
     uint16 m_flags;
+
+    
+    // == WARNING ==
+    // This "between" section is unclear and not fully complete
 }
 
 // CEntityKeyValues::Serialize
