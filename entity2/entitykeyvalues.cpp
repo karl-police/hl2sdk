@@ -75,7 +75,6 @@ void CEntityKeyValues::ReleaseAllComplexKeys()
 }
 
 
-
 void CEntityKeyValues::RemoveAllKeys() {
     CUtlLeanVectorFixedGrowableBase<unsigned int, 9u, short int>::IndexType_t m_nAllocated;
     CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::IndexType_t v2;
@@ -92,10 +91,124 @@ void CEntityKeyValues::RemoveAllKeys() {
 
 }
 
+void CEntityKeyValues::~CEntityKeyValues() {
+    CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::IndexType_t m_nAllocated;
+    CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::ElemType_t* m_pElements;
+    CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::IndexType_t v4; // dx
+    CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::ElemType_t* v5; // rax
+    uint16 m_flags;
+    CUtlLeanVectorFixedGrowableBase<unsigned int, 9u, short int>::IndexType_t v7;
+
+    void(FASTCALL* v8)(_QWORD*, CUtlLeanVectorFixedGrowableBase<unsigned int, 9u, short int>::ElemType_t*);
+
+    CEntityKeyValues::ReleaseAllComplexKeys(this);
+
+    this->m_connectionDescs.m_Size = 0;
+    
+    if ( this->m_connectionDescs.m_Memory.m_nGrowSize & 0xC0000000) == 0 ) {
+        CUtlMemory<EntityIOConnectionDescFat_t, int>::Purge(&this->m_connectionDescs.m_Memory);
+    }
+
+    CUtlScratchMemoryPool::~CUtlScratchMemoryPool(&this->m_memoryPool);
+
+    // MISSING_HELP
+    /* m_nAllocated = this->m_keyValues._anon_0.m_nAllocated;
+
+    if (m_nAllocated) {
+        m_pElements = this->m_keyValues._anon_0.m_pElements;
+    }
+    else {
+        m_pElements = nullptr;
+    }
+
+    if (this->m_keyValues._anon_0.m_nCount > 0) {
+        v4 = 0;
+
+        while (this->m_keyValues._anon_0.m_nCount > v4) do {
+            v5 = &m_pElements[v4];
+            m_flags = v5->m_value.m_flags;
+            if ((m_flags & 1) != 0) {
+                v5->m_value.m_flags = m_flags & 0xFFFE;
+                v5->m_value._anon_0.m_uint64 = nullptr;
+                ++v4;
+                v5->m_value.m_type = 0;
+            }
+        }
+
+        m_nAllocated = this->m_keyValues._anon_0.m_nAllocated;
+    }
+
+    if (m_nAllocated > 0) {
+        (*(void(__fastcall**)(_QWORD*, CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::ElemType_t*))(*g_pMemAlloc + 16LL))(
+            g_pMemAlloc,
+            this->m_keyValues._anon_0.m_pElements);
+        this->m_keyValues._anon_0.m_pElements = nullptr;
+    }
+
+    v7 = this->m_keyHashes._anon_0._anon_0.m_nAllocated;
+    this->m_keyValues._anon_0.m_nAllocated = 0;
+    this->m_keyHashes._anon_0._anon_0.m_nCount = 0;
+
+    if ((unsigned __int64)v7 > 9)
+    {
+        v8 = *(void(__fastcall**)(_QWORD*, CUtlLeanVectorFixedGrowableBase<unsigned int, 9u, short int>::ElemType_t*))(*g_pMemAlloc + 16LL);
+        if (v7)
+            v8(g_pMemAlloc, this->m_keyHashes._anon_0._anon_2.m_pElements);
+        else
+            v8(g_pMemAlloc, nullptr);
+        this->m_keyHashes._anon_0._anon_0.m_nAllocated = 9;
+    }
+    else
+    {
+        this->m_keyHashes._anon_0._anon_0.m_nAllocated = 9;
+    }*/
+}
 
 
-bool CEntityKeyValues::HasValue(const CEntityKeyValues* const this, EntityKeyId_t key) {
+bool CEntityKeyValues::HasValue(EntityKeyId_t key) {
+    int m_nCount;
 
+    CUtlLeanVectorFixedGrowableBase<unsigned int, 9u, short int>::IndexType_t m_nAllocated;
+    int64 v4;
+    CUtlLeanVectorFixedGrowableBase<unsigned int, 9u, short int>::ElemType_t* m_pElements;
+    CUtlLeanVectorBase<CEntityKeyValues::KeyValueInfo_t, short int>::ElemType_t* v6;
+
+    m_nCount = this->m_keyHashes._anon_0._anon_0.m_nCount;
+    if (m_nCount <= 0) {
+        return 0; // return false?
+    }
+
+    m_nAllocated = this->m_keyHashes._anon_0._anon_0.m_nAllocated;
+    v4 = nullptr;
+
+    // MISSING_HELP
+    /*while (!m_nAllocated) {
+
+        if ( *(DWORD*)(4 * v4) == key.m_nHashCode ) {
+            if (this->m_keyValues._anon_0.m_nAllocated) {
+                v6 = this->m_keyValues._anon_0.m_pElements;
+            }
+            else {
+                v6 = nullptr;
+            }
+
+            return (v6[v4].m_pAttributeName == nullptr);
+        }
+    }*/
+
+    // This never got called
+    /*
+    LABEL_6:
+        if ( m_nCount <= (int)++v4 )
+          return 0;
+      }
+      m_pElements = (CUtlLeanVectorFixedGrowableBase<unsigned int,9u,short int>::ElemType_t *)(&this->m_keyHashes._anon_0._anon_2.m_nAllocAllocated
+                                                                                             + 1);
+      if ( (unsigned __int64)m_nAllocated > 9 )
+        m_pElements = this->m_keyHashes._anon_0._anon_2.m_pElements;
+      if ( m_pElements[v4] != key.m_nHashCode )
+        goto LABEL_6;
+    */
 }
 
 
