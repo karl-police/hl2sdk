@@ -18,6 +18,7 @@ class IEntityResourceManifestBuilder;
 class ISpawnGroupEntityFilter;
 
 typedef void (*EntityResourceManifestCreationCallback_t)(struct IEntityResourceManifest*, void*);
+typedef EntityKeyId_t CUtlStringToken;
 
 enum SpawnGroupEntityFilterType_t
 {
