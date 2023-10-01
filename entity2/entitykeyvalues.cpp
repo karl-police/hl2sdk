@@ -31,6 +31,31 @@ struct CEntityKeyValues::KeyValueInfo_t {
 
 // Functions
 
+void CEntityKeyValues::CEntityKeyValues() { // Only commented things here are missing
+    CUtlScratchMemoryPool* p_m_memoryPool;
+
+    /*
+    this->m_keyHashes._anon_0._anon_0.m_nCount = 0;
+    this->m_keyHashes._anon_0._anon_0.m_nAllocated = 9;
+    */
+
+    p_m_memoryPool = &this->m_memoryPool;
+
+    /*
+    LOWORD(p_m_memoryPool[-1].m_pFirstBlock) = 0;
+    WORD1(p_m_memoryPool[-1].m_pFirstBlock) = 0;
+    */
+
+    CUtlScratchMemoryPool::CUtlScratchMemoryPool(p_m_memoryPool, 512, nullptr, 0);
+    this->m_connectionDescs.m_Size = 0;
+    this->m_connectionDescs.m_Memory.m_pMemory = nullptr;
+    this->m_connectionDescs.m_Memory.m_nAllocationCount = 0;
+    this->m_connectionDescs.m_Memory.m_nGrowSize = 0;
+    this->m_nRefCount = 0;
+    this->m_nQueuedForSpawnCount = 0;
+    this->m_pComplexKeys = nullptr;
+}
+
 void CEntityKeyValues::ReleaseAllComplexKeys()
 {    
     for ( EntityComplexKeyListElem_t* i = m_pComplexKeys; i; i = i->m_pNext )
