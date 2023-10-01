@@ -31,7 +31,7 @@ struct CEntityKeyValues::KeyValueInfo_t {
 
 // Functions
 
-void CEntityKeyValues::CEntityKeyValues() { // Only commented things here are missing
+void CEntityKeyValues::CEntityKeyValues() { // Only commented things here are missing - "MISSING_HELP"
     CUtlScratchMemoryPool* p_m_memoryPool;
 
     /*
