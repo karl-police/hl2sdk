@@ -51,6 +51,25 @@ enum EntityDormancyType_t
 	ENTITY_SUSPENDED = 0x2,
 };
 
+
+struct CEntityIdentity {
+	CEntityInstance* m_pInstance;CEntityClass* m_pClass;
+	CEntityHandle m_EHandle;CNetworkVarBase<int, CEntityIdentity::NetworkVar_m_nameStringableIndex> m_nameStringableIndex;
+	string_t m_name;
+	string_t m_designerName;
+	CEntityPublicScriptScope m_hPublicScope;
+	uint32 m_flags;SpawnGroupHandle_t m_hSpawnGroup;
+	uint32 m_fDataObjectTypes;
+	ChangeAccessorFieldPathIndex_t m_PathIndex;
+	uint16 m_Padding;CUtlObjectAttributeTable<CEntityIdentity, CUtlStringToken>* m_pAttributes;
+	CRenderAttributesDoubleBuffered* m_pRenderAttrs;CEntityIdentity* m_pPrev;
+	CEntityIdentity* m_pNext;
+	CEntityIdentity* m_pPrevByClass;
+	CEntityIdentity* m_pNextByClass;
+	V_uuid_t* m_pId;
+}
+
+
 struct EntityNotification_t
 {
 	CEntityIdentity* m_pEntity;
