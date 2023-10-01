@@ -1,5 +1,19 @@
 #include "entity2/entitysystem.h"
 
+
+struct CEntityKeyValues {
+    CUtlLeanVectorFixedGrowable<unsigned int, 9u, short int> m_keyHashes;
+    CUtlLeanVector<CEntityKeyValues::KeyValueInfo_t, short int> m_keyValues;
+    CUtlScratchMemoryPool m_memoryPool;
+    CEntityKeyValues::EntityComplexKeyListElem_t* m_pComplexKeys;
+    int16 m_nRefCount;
+    int16 m_nQueuedForSpawnCount;
+    CUtlVector<EntityIOConnectionDescFat_t, CUtlMemory<EntityIOConnectionDescFat_t, int> > m_connectionDescs;
+}
+
+
+
+
 struct CEntityKeyValues::EntityComplexKeyListElem_t {
     IEntityKeyComplex* m_pKey;
     CEntityKeyValues::EntityComplexKeyListElem_t* m_pNext; 
@@ -47,6 +61,9 @@ void CEntityKeyValues::RemoveAllKeys() {
 bool CEntityKeyValues::HasValue(const CEntityKeyValues* const this, EntityKeyId_t key) {
 
 }
+
+
+
 
 
 
