@@ -164,7 +164,6 @@ void CEntityKeyValues::~CEntityKeyValues() {
     }*/
 }
 
-
 bool CEntityKeyValues::HasValue(EntityKeyId_t key) {
     int m_nCount;
 
@@ -211,6 +210,55 @@ bool CEntityKeyValues::HasValue(EntityKeyId_t key) {
     */
 }
 
+void CEntityKeyValues::SetTargetNameForConnection(int nDesc, const char *pTargetName) {
+    int64 v4;
+
+    EntityIOConnectionDescFat_t* v5;
+
+    int targetNameLen;
+    int targetNameLen_2;
+
+    int v9;
+
+    char* m_pTargetName;
+    size_t v11;
+    char* v12;
+
+    if (this->m_nQueuedForSpawnCount <= 0) {
+        v4 = nDesc;
+        v5 = &this->m_connectionDescs.m_Memory.m_pMemory[v4];
+
+        if (pTargetName)
+        {
+            targetNameLen = strlen(pTargetName);
+
+            v5->m_pTargetName = (char*)CUtlScratchMemoryPool::AllocAligned(
+                CEntityVariantAllocator::sm_pMemoryPool,
+                targetNameLen + 1,
+                8 * (unsigned int)(targetNameLen + 1 >= 16) + 8);
+
+            targetNameLen_2 = strlen(pTargetName);
+
+            v9 = targetNameLen_2 + 1;
+            m_pTargetName = this->m_connectionDescs.m_Memory.m_pMemory[v4].m_pTargetName;
+
+            if (v9 < 0) {
+                DebugBreak();
+            }
+
+            v11 = v9;
+        }
+        else
+        {
+            v12 = (char*)CUtlScratchMemoryPool::AllocAligned(CEntityVariantAllocator::sm_pMemoryPool, 1, 8);
+            v11 = 1LL;
+            v5->m_pTargetName = v12;
+            m_pTargetName = this->m_connectionDescs.m_Memory.m_pMemory[v4].m_pTargetName;
+        }
+
+        memcpy(m_pTargetName, pTargetName, v11);
+    }
+}
 
 
 
