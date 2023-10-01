@@ -1,5 +1,11 @@
 #include "entity2/entitysystem.h"
 
+struct CEntityKeyValues::EntityComplexKeyListElem_t {
+    IEntityKeyComplex* m_pKey;
+    CEntityKeyValues::EntityComplexKeyListElem_t* m_pNext; 
+}
+
+
 void CEntityKeyValues::ReleaseAllComplexKeys()
 {    
     for ( EntityComplexKeyListElem_t* i = m_pComplexKeys; i; i = i->m_pNext )
@@ -31,7 +37,18 @@ void CEntityKeyValues::RemoveAllKeys() {
     
     // == WARNING ==
     // This "between" section is unclear and not fully complete
+
+
+
 }
+
+
+
+bool CEntityKeyValues::HasValue(const CEntityKeyValues* const this, EntityKeyId_t key) {
+
+}
+
+
 
 // CEntityKeyValues::Serialize
 
