@@ -12,13 +12,19 @@ struct CEntityKeyValues {
 }
 
 
-
+struct CEntityKeyValues::CIterator {
+    const CEntityKeyValues* m_pKeyValues;
+    int m_nIndex;
+};
 
 struct CEntityKeyValues::EntityComplexKeyListElem_t {
     IEntityKeyComplex* m_pKey;
-    CEntityKeyValues::EntityComplexKeyListElem_t* m_pNext; 
+    CEntityKeyValues::EntityComplexKeyListElem_t* m_pNext;
 }
 
+
+
+// Functions
 
 void CEntityKeyValues::ReleaseAllComplexKeys()
 {    
