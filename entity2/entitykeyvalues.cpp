@@ -260,18 +260,235 @@ void CEntityKeyValues::SetTargetNameForConnection(int nDesc, const char *pTarget
     }
 }
 
+void CEntityKeyValues::SetValueOverrideForConnection(int nDesc, const char* pValueOverride) {
+    __int64 v4;
 
+    EntityIOConnectionDescFat_t* v5;
+    int valueLength;
+    int valueLength_2;
 
+    int v9;
 
+    char* m_pOverrideParam;
+    size_t v11;
+    char* v12;
 
-// CEntityKeyValues::Serialize
+    if (this->m_nQueuedForSpawnCount <= 0) {
+        v4 = nDesc;
+        v5 = &this->m_connectionDescs.m_Memory.m_pMemory[v4];
 
+        if (pValueOverride) {
+            valueLength = strlen(pValueOverride);
+            v5->m_pOverrideParam = (char*)CUtlScratchMemoryPool::AllocAligned(
+                CEntityVariantAllocator::sm_pMemoryPool,
+                valueLength + 1,
+                8 * (unsigned int)(valueLength + 1 >= 16) + 8);
 
-__int64 CEntityKeyValues::Unserialize(CUtlBuffer* const buf) {
+            valueLength_2 = strlen(pValueOverride);
 
+            v9 = valueLength_2 + 1;
+            m_pOverrideParam = this->m_connectionDescs.m_Memory.m_pMemory[v4].m_pOverrideParam;
+            
+            if (v9 < 0) {
+                DebugBreak();
+            }
+                
+            v11 = v9;
+        }
+        else
+        {
+            v12 = (char*)CUtlScratchMemoryPool::AllocAligned(CEntityVariantAllocator::sm_pMemoryPool, 1, 8);
+            v11 = 1LL;
+            v5->m_pOverrideParam = v12;
+            m_pOverrideParam = this->m_connectionDescs.m_Memory.m_pMemory[v4].m_pOverrideParam;
+        }
+
+        memcpy(m_pOverrideParam, pValueOverride, v11);
+    }
+}
+
+void CEntityKeyValues::RemoveConnectionDesc(int nDesc) {
+    int m_Size;
+    int v3;
+    EntityIOConnectionDescFat_t* v4;
+
+    if (this->m_nQueuedForSpawnCount <= 0)
+    {
+        m_Size = this->m_connectionDescs.m_Size;
+        v3 = m_Size - nDesc - 1;
+        if (v3 > 0)
+        {
+            v4 = &this->m_connectionDescs.m_Memory.m_pMemory[nDesc + 1];
+            memmove(&v4[-1], v4, 48LL * v3);
+            m_Size = this->m_connectionDescs.m_Size;
+        }
+        this->m_connectionDescs.m_Size = m_Size - 1;
+    }
+}
+
+unsigned int CEntityKeyValues::GetNumConnectionDescs() {
+    return this->m_connectionDescs.m_Size;
+}
+
+char* CEntityKeyValues::GetOutputName(int nDesc) {
+    return this->m_connectionDescs.m_Memory.m_pMemory[nDesc].m_pOutputName;
+}
+
+const EntityIOConnectionDescFat_t* CEntityKeyValues::GetConnectionDescFat(int nDesc) {
+    return &this->m_connectionDescs.m_Memory.m_pMemory[nDesc];
+}
+
+void CEntityKeyValues::DumpToLog(unsigned int nChannel, const char *pPrefix) {
+    // MISSING_HELP
+    // We don't need this?
 }
 
 
-// CEntityKeyValues::UnserializeKeys from world renderer
+int64 CEntityKeyValues::UnserializeKeys(
+    CUtlLeanVectorImpl<CUtlLeanVectorFixedGrowableBase<unsigned int, 9u, short int>, unsigned int, short int>* buf,
+    int nCount,
+    bool bUnserializeAttribute
+    )
+{
+
+}
+
+int64 CEntityKeyValues::Unserialize(CUtlBuffer* const buf) {
+    // MISSING_HELP
+}
+
+int64 CEntityKeyValues::SerializeKeys(CUtlBuffer* const buf, bool bSerializeAttributes) {
+    // MISSING_HELP
+}
+
+int64 CEntityKeyValues::Serialize(CUtlBuffer* const buf) {
+    // MISSING_HELP
+}
+
+void CEntityKeyValues::RemoveKey(EntityKeyId_t key) {
+    // MISSING_HELP
+}
+
+void CEntityKeyValues::RemoveKeyForSpawn(EntityKeyId_t key) {
+    // MISSING_HELP
+}
+
+void CEntityKeyValues::AddConnectionDesc(
+    const char* pOutputName,
+    EntityIOTargetType_t nTargetType,
+    const char* pTargetName,
+    const char* pInputName,
+    const char* pOverrideParam,
+    float flDelay,
+    int nTimesToFire
+    )
+{
+    const char* v8;
+    int outputNameLength;
+    int targetNameLength;
+    int inputNameLength
+
+    char* pOutputNameMemory;
+    char* pInputNameMemory;
+    char* pOverrideParamMemory;
+
+    int v16;
+    int v17;
+    
+    int v19;
+    int v20;
+    
+    int v22;
+    __int64 m_Size;
+    int v24;
+
+    EntityIOConnectionDescFat_t* conDesc;
+    char* desc;
+
+    v8 = pOutputName;
+    if (pOutputName)
+    {
+        outputNameLength = strlen(pOutputName) + 1;
+    }
+    else
+    {
+        v8 = "";
+        outputNameLength = 1;
+    }
+
+    if (!pTargetName)
+        pTargetName = "";
+    if (!pInputName)
+        pInputName = "";
+    if (!pOverrideParam)
+        pOverrideParam = "";
+
+    desc = CUtlScratchMemoryPool::AllocAligned(
+        CEntityVariantAllocator::sm_pMemoryPool,
+        outputNameLength,
+        8 * (unsigned int)(outputNameLength >= 16) + 8);
+
+    targetNameLength = strlen(v8) + 1;
+    if (targetNameLength < 0)
+        DebugBreak();
+
+    memcpy(desc, v8, targetNameLength);
+    inputNameLength = strlen(pTargetName);
+
+    pOutputNameMemory = CUtlScratchMemoryPool::AllocAligned(
+        CEntityVariantAllocator::sm_pMemoryPool,
+        inputNameLength + 1,
+        8 * (unsigned int)(inputNameLength + 1 >= 16) + 8);
+
+    v16 = strlen(pTargetName) + 1;
+    if (v16 < 0)
+        DebugBreak();
+
+    memcpy(pOutputNameMemory, pTargetName, v16);
+    v17 = strlen(pInputName);
+    pInputNameMemory = CUtlScratchMemoryPool::AllocAligned(
+        CEntityVariantAllocator::sm_pMemoryPool,
+        v17 + 1,
+        8 * (unsigned int)(v17 + 1 >= 16) + 8);
+
+    v19 = strlen(pInputName) + 1;
+
+    if (v19 < 0)
+        DebugBreak();
+
+    memcpy(pInputNameMemory, pInputName, v19);
+    v20 = strlen(pOverrideParam);
+    pOverrideParamMemory = CUtlScratchMemoryPool::AllocAligned(
+        CEntityVariantAllocator::sm_pMemoryPool,
+        v20 + 1,
+        8 * (unsigned int)(v20 + 1 >= 16) + 8);
+
+    v22 = strlen(pOverrideParam) + 1;
+    if (v22 < 0)
+        DebugBreak();
+
+    memcpy(pOverrideParamMemory, pOverrideParam, v22);
+    m_Size = this->m_connectionDescs.m_Size;
+    v24 = this->m_connectionDescs.m_Size;
+
+    if ((DWORD)m_Size == this->m_connectionDescs.m_Memory.m_nAllocationCount) {
+        CUtlMemory<EntityIOConnectionDescFat_t, int>::Grow(&this->m_connectionDescs.m_Memory, 1);
+        v24 = this->m_connectionDescs.m_Size;
+    }
+
+    this->m_connectionDescs.m_Size = v24 + 1;
+    conDesc = &this->m_connectionDescs.m_Memory.m_pMemory[m_Size];
+
+
+    if (conDesc) {
+        conDesc->m_pTargetName = pOutputNameMemory;
+        conDesc->m_pInputName = pInputNameMemory;
+        conDesc->m_pOverrideParam = pOverrideParamMemory;
+        conDesc->m_pOutputName = desc;
+        conDesc->m_flDelay = flDelay;
+        conDesc->m_nTimesToFire = nTimesToFire;
+        conDesc->m_targetType = nTargetType;
+    }
+}
 
 // more
