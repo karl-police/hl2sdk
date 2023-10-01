@@ -84,7 +84,6 @@ void CEntityKeyValues::RemoveAllKeys() {
     uint16 m_flags;
 
     
-    // == WARNING ==
     // MISSING_HELP
 
 
