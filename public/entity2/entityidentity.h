@@ -85,5 +85,4 @@ public:
 	typedef CEntityIdentity ThisClass;
 };
 
-
 #endif // ENTITYIDENTITY_H
