@@ -82,7 +82,7 @@ public:
 		int8 gap0[1];
 	};
 
-	typedef ThisClass CEntityIdentity;
+	typedef CEntityIdentity ThisClass;
 };
 
 
