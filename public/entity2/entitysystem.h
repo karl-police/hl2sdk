@@ -10,8 +10,8 @@
 #include "eiface.h"
 #include "concreteentitylist.h"
 #include "entitydatainstantiator.h"
+#include "entitykeyvalues.h"
 
-class CEntityKeyValues;
 class IEntityResourceManifest;
 class IEntityPrecacheConfiguration;
 class IEntityResourceManifestBuilder;
