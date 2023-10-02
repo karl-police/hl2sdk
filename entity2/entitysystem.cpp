@@ -1,5 +1,5 @@
 #include "const.h"
-#include "entity2/entitysystem.h"
+#include "entitysystem.h"
 
 CBaseEntity* CEntitySystem::GetBaseEntity(CEntityIndex entnum)
 {
