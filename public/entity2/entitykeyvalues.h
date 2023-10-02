@@ -1,7 +1,7 @@
 #ifndef ENTITYKEYVALUES_H
 #define ENTITYKEYVALUES_H
 
-#include "entity2/entitysystem.h"
+#include "entitysystem.h"
 
 struct CEntityKeyValues {
     CUtlLeanVectorFixedGrowable<unsigned int, 9u, short int> m_keyHashes;
