@@ -1,4 +1,4 @@
-#include "public/entity2/entitykeyvalues.h"
+#include "entitykeyvalues.h"
 
 void CEntityKeyValues::CEntityKeyValues() { // Only commented things here are missing - "MISSING_HELP"
     CUtlScratchMemoryPool* p_m_memoryPool;
