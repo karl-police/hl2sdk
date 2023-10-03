@@ -76,6 +76,7 @@ public:
 	// Adds an element, uses default constructor
 	int AddToHead();
 	int AddToTail();
+	T* AddToTailGetPtr();
 	int InsertBefore( int elem );
 	int InsertAfter( int elem );
 
