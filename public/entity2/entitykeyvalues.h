@@ -3,7 +3,6 @@
 
 #include "tier1/utlleanvector.h"
 #include "entitysystem.h"
-#include "variant.h"
 
 class CEntityKeyValues {
 public:
