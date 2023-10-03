@@ -17,7 +17,7 @@ class IEntityPrecacheConfiguration;
 class IEntityResourceManifestBuilder;
 class ISpawnGroupEntityFilter;
 
-typedef void (*EntityResourceManifestCreationCallback_t)(struct IEntityResourceManifest*, void*);
+//typedef void (*EntityResourceManifestCreationCallback_t)(struct IEntityResourceManifest*, void*);
 typedef CUtlStringToken EntityKeyId_t;
 
 enum SpawnGroupEntityFilterType_t
