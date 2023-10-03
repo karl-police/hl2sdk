@@ -11,8 +11,12 @@
 #include "concreteentitylist.h"
 #include "entitydatainstantiator.h"
 #include "entitykeyvalues.h"
+#include "ivscript.h"
 
-class IEntityKeyComplex;
+class IEntityKeyComplex {
+	int m_nRef;
+};
+
 class IEntityResourceManifest;
 class IEntityPrecacheConfiguration;
 class IEntityResourceManifestBuilder;
