@@ -12,6 +12,7 @@
 #include "entitydatainstantiator.h"
 #include "entitykeyvalues.h"
 
+class IEntityKeyComplex;
 class IEntityResourceManifest;
 class IEntityPrecacheConfiguration;
 class IEntityResourceManifestBuilder;
