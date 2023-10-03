@@ -72,8 +72,8 @@ public:
 	};
 
 
-	unsigned int TotalMemFree() {
-		unsigned int totalFreeMemory = 0;
+	int TotalMemFree() {
+		int totalFreeMemory = 0;
 
 		MemoryBlock_t* currentBlock = m_pFirstBlock;
 
