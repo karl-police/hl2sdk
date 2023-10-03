@@ -5,7 +5,7 @@
 
 class CEntityKeyValues {
 public:
-    //CUtlLeanVectorFixedGrowable<unsigned int, 9u, short int> m_keyHashes;
+    CUtlLeanVectorFixedGrowable<unsigned int, 9u, short int> m_keyHashes;
     CUtlLeanVector<CEntityKeyValues::KeyValueInfo_t, short int> m_keyValues;
     CUtlScratchMemoryPool m_memoryPool;
     CEntityKeyValues::EntityComplexKeyListElem_t* m_pComplexKeys;
