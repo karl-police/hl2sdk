@@ -67,6 +67,8 @@ public:
 		if (nSizeInBytes == 0) {
 			return nullptr;
 		}
+
+		// obviously not finished
 	};
 
 
