@@ -224,14 +224,6 @@ public:
 	CUtlVectorFixedGrowable( int growSize = 0 ) : BaseClass( growSize, MAX_SIZE ) {}
 };
 
-template< class T, class B = short >
-class CUtlLeanVectorBase
-{
-private:
-	B m_nAllocationCount;
-	B m_nGrowSize;
-	T* m_pMemory;
-};
 
 //-----------------------------------------------------------------------------
 // The CUtlVectorConservative class:
@@ -760,6 +752,12 @@ template< typename T, class A >
 inline int CUtlVector<T, A>::AddToTail()
 {
 	return InsertBefore( m_Size );
+}
+
+template< typename T, class A >
+inline T* CUtlVector<T, A>::AddToTailGetPtr()
+{
+	return &Element(AddToTail());
 }
 
 template< typename T, class A >
