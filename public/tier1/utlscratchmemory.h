@@ -1,6 +1,8 @@
 #ifndef UTLSCRATCHMEMORY_H
 #define UTLSCRATCHMEMORY_H
 
+#define UTLSCRATCHMEMORYPOOL_FINISHED
+
 #if _WIN32
 #pragma once
 #endif
@@ -60,6 +62,27 @@ public:
 	// void *AllocAligned(int nSizeInBytes, int nAlignment);
 	// void FreeToAllocPoint(UtlScratchMemoryPoolMark_t mark);
 	// void FreeAll();
+
+	void* AllocAligned(int nSizeInBytes, int nAlignment) {
+		if (nSizeInBytes == 0) {
+			return nullptr;
+		}
+	};
+
+
+	unsigned int TotalMemFree() {
+		unsigned int totalFreeMemory = 0;
+
+		MemoryBlock_t* currentBlock = m_pFirstBlock;
+
+		while (currentBlock != nullptr) {
+			totalFreeMemory += currentBlock->m_nBytesFree;
+			currentBlock = currentBlock->m_pNext;
+		}
+
+		return totalFreeMemory;
+	}
+
 
 private:
 	struct MemoryBlock_t
